@@ -22,6 +22,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.steveson.createfloodpulley.behavior.FluidDrainingMisbehavior;
 
 import java.util.List;
 
@@ -32,9 +33,9 @@ public class FloodPulleyBlockEntity extends KineticBlockEntity {
 
     private SmartFluidTank internalTank;
     private LazyOptional<IFluidHandler> capability;
-    private FluidDrainingBehaviour drainer;
+    private FluidDrainingMisbehavior drainer;
     private FluidFillingBehaviour filler;
-    private HosePulleyFluidHandler handler;
+    private FloodPulleyFluidHandler handler;
 //
 
     public FloodPulleyBlockEntity(BlockEntityType<?> typeIn, BlockPos pos, BlockState state) {
@@ -43,7 +44,7 @@ public class FloodPulleyBlockEntity extends KineticBlockEntity {
                 .startWithValue(0);
         isMoving = true;
         internalTank = new SmartFluidTank(1500, this::onTankContentsChanged);
-        handler = new HosePulleyFluidHandler(internalTank, filler, drainer,
+        handler = new FloodPulleyFluidHandler(internalTank, filler, drainer,
                 () -> worldPosition.below((int) Math.ceil(offset.getValue())), () -> !this.isMoving);
         capability = LazyOptional.of(() -> handler);
     }
@@ -59,12 +60,12 @@ public class FloodPulleyBlockEntity extends KineticBlockEntity {
 
     @Override
     public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
-        drainer = new FluidDrainingBehaviour(this);
+        drainer = new FluidDrainingMisbehavior(this);
         filler = new FluidFillingBehaviour(this);
         behaviours.add(drainer);
         behaviours.add(filler);
         super.addBehaviours(behaviours);
-        registerAwardables(behaviours, AllAdvancements.HOSE_PULLEY);
+//        registerAwardables(behaviours, AllAdvancements.HOSE_PULLEY);
     }
 
     protected void onTankContentsChanged(FluidStack contents) {}
