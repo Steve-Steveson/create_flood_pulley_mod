@@ -23,6 +23,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.steveson.createfloodpulley.behavior.FluidDrainingMisbehavior;
+import net.steveson.createfloodpulley.behavior.FluidFillingMisbehavior;
 
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class FloodPulleyBlockEntity extends KineticBlockEntity {
     private SmartFluidTank internalTank;
     private LazyOptional<IFluidHandler> capability;
     private FluidDrainingMisbehavior drainer;
-    private FluidFillingBehaviour filler;
+    private FluidFillingMisbehavior filler;
     private FloodPulleyFluidHandler handler;
 //
 
@@ -61,7 +62,7 @@ public class FloodPulleyBlockEntity extends KineticBlockEntity {
     @Override
     public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
         drainer = new FluidDrainingMisbehavior(this);
-        filler = new FluidFillingBehaviour(this);
+        filler = new FluidFillingMisbehavior(this);
         behaviours.add(drainer);
         behaviours.add(filler);
         super.addBehaviours(behaviours);

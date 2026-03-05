@@ -8,6 +8,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.steveson.createfloodpulley.behavior.FluidDrainingMisbehavior;
+import net.steveson.createfloodpulley.behavior.FluidFillingMisbehavior;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -97,12 +98,12 @@ public class FloodPulleyFluidHandler implements IFluidHandler {
     //
 
     private SmartFluidTank internalTank;
-    private FluidFillingBehaviour filler;
+    private FluidFillingMisbehavior filler;
     private FluidDrainingMisbehavior drainer;
     private Supplier<BlockPos> rootPosGetter;
     private Supplier<Boolean> predicate;
 
-    public FloodPulleyFluidHandler(SmartFluidTank internalTank, FluidFillingBehaviour filler,
+    public FloodPulleyFluidHandler(SmartFluidTank internalTank, FluidFillingMisbehavior filler,
                                    FluidDrainingMisbehavior drainer, Supplier<BlockPos> rootPosGetter, Supplier<Boolean> predicate) {
         this.internalTank = internalTank;
         this.filler = filler;
