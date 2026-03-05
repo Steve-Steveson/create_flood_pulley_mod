@@ -1,9 +1,6 @@
 package net.steveson.createfloodpulley.block.custom;
 
 import com.simibubi.create.content.fluids.hosePulley.HosePulleyBlock;
-import com.simibubi.create.content.fluids.hosePulley.HosePulleyFluidHandler;
-import com.simibubi.create.content.fluids.transfer.FluidDrainingBehaviour;
-import com.simibubi.create.content.fluids.transfer.FluidFillingBehaviour;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.foundation.advancement.AllAdvancements;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;

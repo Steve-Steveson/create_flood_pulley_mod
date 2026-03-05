@@ -19,18 +19,10 @@ import static net.steveson.createfloodpulley.CreateFloodPulleyMod.REGISTRATE;
 
 
 public class CFPBlocks {
-//    private static final CreateRegistrate REGISTRATE = Create.registrate();
-//
-//    static {
-//        REGISTRATE.setCreativeTab(AllCreativeModeTabs.BASE_CREATIVE_TAB);
-//    }
 
     static {
         REGISTRATE.setCreativeTab(AllCreativeModeTabs.BASE_CREATIVE_TAB);
     }
-
-
-
 
     public static final BlockEntry<FloodPulleyBlock> FLOOD_PULLEY = REGISTRATE.block("flood_pulley", FloodPulleyBlock::new)
             .initialProperties(SharedProperties::copperMetal)

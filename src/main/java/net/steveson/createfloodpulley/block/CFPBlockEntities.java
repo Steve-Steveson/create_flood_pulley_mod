@@ -1,9 +1,5 @@
 package net.steveson.createfloodpulley.block;
 
-import com.simibubi.create.AllBlocks;
-import com.simibubi.create.content.contraptions.pulley.HosePulleyVisual;
-import com.simibubi.create.content.fluids.hosePulley.HosePulleyBlockEntity;
-import com.simibubi.create.content.fluids.hosePulley.HosePulleyRenderer;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import net.steveson.createfloodpulley.block.custom.FloodPulleyBlockEntity;
 import net.steveson.createfloodpulley.block.custom.FloodPulleyRenderer;

@@ -1,7 +1,5 @@
 package net.steveson.createfloodpulley.behavior;
 
-import com.simibubi.create.content.fluids.transfer.FluidDrainingBehaviour;
-import com.simibubi.create.content.fluids.transfer.FluidManipulationBehaviour;
 import com.simibubi.create.foundation.advancement.AllAdvancements;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BehaviourType;
