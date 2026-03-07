@@ -77,14 +77,6 @@ public class FluidDrainingMisbehavior extends FluidManipulationMisbehavior {
         if (validationFrontier.isEmpty() && !queue.isEmpty() && !simulate && revalidateIn == 0)
             revalidate(root);
 
-        if (infinite) {
-            blockEntity.award(AllAdvancements.HOSE_PULLEY);
-            if (FluidHelper.isLava(fluid))
-                blockEntity.award(AllAdvancements.HOSE_PULLEY_LAVA);
-
-            playEffect(world, root, fluid, true);
-            return true;
-        }
 
         while (!queue.isEmpty()) {
             // Dont dequeue here, so we can decide not to dequeue a valid entry when
@@ -277,19 +269,6 @@ public class FluidDrainingMisbehavior extends FluidManipulationMisbehavior {
             visited.clear();
         }
 
-//        int maxBlocks = maxBlocks();
-//        if (visited.size() > maxBlocks && canDrainInfinitely(fluid) && !queue.isEmpty()) {
-//            infinite = true;
-//            BlockPos firstValid = queue.first()
-//                    .pos();
-//            frontier.clear();
-//            visited.clear();
-//            queue.clear();
-//            queue.enqueue(new BlockPosEntry(firstValid, 0));
-//            blockEntity.sendData();
-//            return;
-//        }
-
         if (!frontier.isEmpty())
             return;
 
@@ -306,22 +285,11 @@ public class FluidDrainingMisbehavior extends FluidManipulationMisbehavior {
             setLongValidationTimer();
             return;
         }
-//
-//        int maxBlocks = maxBlocks();
-//        if (validationVisited.size() > maxBlocks && canDrainInfinitely(fluid)) {
-//            if (!infinite)
-//                reset();
-//            validationFrontier.clear();
-//            setLongValidationTimer();
-//            return;
-//        }
+
 
         if (!validationFrontier.isEmpty())
             return;
-        if (infinite) {
-            reset();
-            return;
-        }
+
 
         validationSet = newValidationSet;
         newValidationSet = new HashSet<>();

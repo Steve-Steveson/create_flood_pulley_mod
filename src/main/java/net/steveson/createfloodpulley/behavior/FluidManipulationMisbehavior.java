@@ -70,10 +70,8 @@ public abstract class FluidManipulationMisbehavior extends BlockEntityBehaviour 
     }
 
     protected int validationTimer() {
-//        Code changed here
-        int maxBlocks = -1;
-        // Allow enough time for the server's infinite block threshold to be reached
-        return maxBlocks < 0 ? validationTimerMin : Math.max(validationTimerMin, maxBlocks / searchedPerTick + 1);
+        // Used to Allow enough time for the server's infinite block threshold to be reached
+        return validationTimerMin;
     }
 
     protected int setValidationTimer() {
@@ -246,22 +244,22 @@ public abstract class FluidManipulationMisbehavior extends BlockEntityBehaviour 
         super.read(nbt, clientPacket);
     }
 
-    public enum BottomlessFluidMode implements Predicate<Fluid> {
-        ALLOW_ALL(fluid -> true),
-        DENY_ALL(fluid -> false),
-        ALLOW_BY_TAG(fluid -> AllTags.AllFluidTags.BOTTOMLESS_ALLOW.matches(fluid)),
-        DENY_BY_TAG(fluid -> !AllTags.AllFluidTags.BOTTOMLESS_DENY.matches(fluid));
-
-        private final Predicate<Fluid> predicate;
-
-        BottomlessFluidMode(Predicate<Fluid> predicate) {
-            this.predicate = predicate;
-        }
-
-        @Override
-        public boolean test(Fluid fluid) {
-            return predicate.test(fluid);
-        }
-    }
+//    public enum BottomlessFluidMode implements Predicate<Fluid> {
+//        ALLOW_ALL(fluid -> true),
+//        DENY_ALL(fluid -> false),
+//        ALLOW_BY_TAG(fluid -> AllTags.AllFluidTags.BOTTOMLESS_ALLOW.matches(fluid)),
+//        DENY_BY_TAG(fluid -> !AllTags.AllFluidTags.BOTTOMLESS_DENY.matches(fluid));
+//
+//        private final Predicate<Fluid> predicate;
+//
+//        BottomlessFluidMode(Predicate<Fluid> predicate) {
+//            this.predicate = predicate;
+//        }
+//
+//        @Override
+//        public boolean test(Fluid fluid) {
+//            return predicate.test(fluid);
+//        }
+//    }
 
 }

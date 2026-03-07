@@ -75,25 +75,9 @@ public class FluidFillingMisbehavior extends FluidManipulationMisbehavior{
             return;
         }
 
-        int maxBlocks = -1;
-
-        if (infinityCheckVisited.size() > maxBlocks && maxBlocks != -1 && !fillInfinite()) {
-            if (!infinite) {
-                reset();
-                infinite = true;
-                blockEntity.sendData();
-            }
-            infinityCheckFrontier.clear();
-            setLongValidationTimer();
-            return;
-        }
-
         if (!infinityCheckFrontier.isEmpty())
             return;
-        if (infinite) {
-            reset();
-            return;
-        }
+
 
         infinityCheckVisited.clear();
     }
@@ -128,7 +112,6 @@ public class FluidFillingMisbehavior extends FluidManipulationMisbehavior{
         Level world = getWorld();
         int maxRange = maxRange();
         int maxRangeSq = maxRange * maxRange;
-        int maxBlocks = -1;
         boolean evaporate = world.dimensionType()
                 .ultraWarm() && FluidHelper.isTag(fluid, FluidTags.WATER);
         boolean canPlaceSources = AllConfigs.server().fluids.fluidFillPlaceFluidSourceBlocks.get();
@@ -165,15 +148,6 @@ public class FluidFillingMisbehavior extends FluidManipulationMisbehavior{
 
             if (!simulate)
                 visited.add(currentPos);
-
-            if (visited.size() >= maxBlocks && maxBlocks != -1) {
-                infinite = true;
-                if (!fillInfinite()) {
-                    visited.clear();
-                    queue.clear();
-                    return false;
-                }
-            }
 
             FluidFillingMisbehavior.SpaceType spaceType = getAtPos(world, currentPos, fluid);
             if (spaceType == FluidFillingMisbehavior.SpaceType.BLOCKING)
@@ -219,6 +193,10 @@ public class FluidFillingMisbehavior extends FluidManipulationMisbehavior{
                 BlockPos offsetPos = currentPos.relative(side);
                 if (visited.contains(offsetPos))
                     continue;
+
+//                if (offsetPos.getX() == 5){}
+
+
                 if (offsetPos.distSqr(rootPos) > maxRangeSq)
                     continue;
 

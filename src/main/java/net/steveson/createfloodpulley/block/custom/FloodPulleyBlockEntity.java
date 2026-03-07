@@ -63,7 +63,6 @@ public class FloodPulleyBlockEntity extends KineticBlockEntity {
         behaviours.add(drainer);
         behaviours.add(filler);
         super.addBehaviours(behaviours);
-//        registerAwardables(behaviours, AllAdvancements.HOSE_PULLEY);
     }
 
     protected void onTankContentsChanged(FluidStack contents) {}
