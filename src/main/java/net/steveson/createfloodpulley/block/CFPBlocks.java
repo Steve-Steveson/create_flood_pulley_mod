@@ -15,14 +15,6 @@ import static net.steveson.createfloodpulley.CreateFloodPulleyMod.REGISTRATE;
 
 public class CFPBlocks {
 
-    static {
-        REGISTRATE.setCreativeTab(AllCreativeModeTabs.BASE_CREATIVE_TAB);
-//        AllCreativeModeTabs.PALETTES_CREATIVE_TAB.get().
-    }
-
-
-
-
     public static final BlockEntry<FloodPulleyBlock> FLOOD_PULLEY = REGISTRATE.block("flood_pulley", FloodPulleyBlock::new)
             .initialProperties(SharedProperties::copperMetal)
             .properties(BlockBehaviour.Properties::noOcclusion)
@@ -30,6 +22,7 @@ public class CFPBlocks {
             .transform(pickaxeOnly())
             .blockstate(BlockStateGen.horizontalBlockProvider(true))
             .item()
+            .tab(AllCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .transform(customItemModel())
             .register();
 
@@ -38,7 +31,4 @@ public class CFPBlocks {
 
     public static void register() {
     }
-
-
-
 }

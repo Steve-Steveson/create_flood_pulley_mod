@@ -61,11 +61,7 @@ public class CreateFloodPulleyMod
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
-        if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
-            event.accept( ()->  CFPBlocks.FLOOD_PULLEY);
-        }
-
-//        if (event.getTabKey() == AllCreativeModeTabs.BASE_CREATIVE_TAB) {
+//        if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
 //            event.accept( ()->  CFPBlocks.FLOOD_PULLEY);
 //        }
     }
