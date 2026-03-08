@@ -1,7 +1,9 @@
 package net.steveson.createfloodpulley;
 
 import com.mojang.logging.LogUtils;
+import com.simibubi.create.AllCreativeModeTabs;
 import com.simibubi.create.foundation.data.CreateRegistrate;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -59,7 +61,13 @@ public class CreateFloodPulleyMod
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
+        if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
+            event.accept( ()->  CFPBlocks.FLOOD_PULLEY);
+        }
 
+//        if (event.getTabKey() == AllCreativeModeTabs.BASE_CREATIVE_TAB) {
+//            event.accept( ()->  CFPBlocks.FLOOD_PULLEY);
+//        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

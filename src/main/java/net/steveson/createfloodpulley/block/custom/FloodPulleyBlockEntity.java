@@ -26,6 +26,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.steveson.createfloodpulley.Config;
 import net.steveson.createfloodpulley.behavior.FluidDrainingMisbehavior;
 import net.steveson.createfloodpulley.behavior.FluidFillingMisbehavior;
 import net.steveson.createfloodpulley.util.MoreIcons;
@@ -226,4 +227,12 @@ public class FloodPulleyBlockEntity extends KineticBlockEntity {
             return this.capability.cast();
         return super.getCapability(cap, side);
     }
+
+    //stress impact seems to be set with a single method. How wonderfully plug&play!
+    public float calculateStressApplied() {
+        float impact = Config.floodPulleyStress;
+        this.lastStressApplied = impact;
+        return impact;
+    }
+
 }
