@@ -28,6 +28,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.steveson.createfloodpulley.behavior.FluidDrainingMisbehavior;
 import net.steveson.createfloodpulley.behavior.FluidFillingMisbehavior;
+import net.steveson.createfloodpulley.util.MoreIcons;
 
 import java.util.List;
 
@@ -46,8 +47,8 @@ public class FloodPulleyBlockEntity extends KineticBlockEntity {
 
     public enum ShapeMode implements INamedIconOptions {
 
-        SHAPE_CUBE(AllIcons.I_FX_SURFACE_OFF),
-        SHAPE_CYLINDER(AllIcons.I_FX_FIELD_OFF)
+        SHAPE_CUBE(MoreIcons.I_CUBE),
+        SHAPE_CYLINDER(MoreIcons.I_CYLINDER)
         ;
 
         private String translationKey;
