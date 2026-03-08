@@ -23,6 +23,7 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.fluids.FluidStack;
+import net.steveson.createfloodpulley.block.custom.FloodPulleyBlockEntity;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -53,12 +54,15 @@ public abstract class FluidManipulationMisbehavior extends BlockEntityBehaviour 
 
     int revalidateIn;
 
-    public FluidManipulationMisbehavior(SmartBlockEntity be) {
+    FloodPulleyBlockEntity floodPulley;
+
+    public FluidManipulationMisbehavior(FloodPulleyBlockEntity be) {
         super(be);
         setValidationTimer();
         infinite = false;
         visited = new HashSet<>();
         frontier = new ArrayList<>();
+        this.floodPulley = be;
     }
 
     public boolean isInfinite() {
@@ -86,10 +90,7 @@ public abstract class FluidManipulationMisbehavior extends BlockEntityBehaviour 
         return AllConfigs.server().fluids.hosePulleyRange.get();
     }
 
-//    protected int maxBlocks() {
-//        return AllConfigs.server().fluids.hosePulleyBlockThreshold.get();
-//    }
-
+    //hard coded
     protected boolean fillInfinite() {
         return false;
     }
@@ -180,8 +181,27 @@ public abstract class FluidManipulationMisbehavior extends BlockEntityBehaviour 
                     throw new FluidManipulationMisbehavior.ChunkNotLoadedException();
                 if (visited.contains(offsetPos))
                     continue;
-                if (offsetPos.distSqr(rootPos) > maxRangeSq)
-                    continue;
+
+
+
+
+
+                int xOffset = offsetPos.getX() - rootPos.getX();
+                int yOffset = offsetPos.getY() - rootPos.getY();
+                int zOffset = offsetPos.getZ() - rootPos.getZ();
+
+                if (this.floodPulley.shapeMode.get() == FloodPulleyBlockEntity.ShapeMode.SHAPE_CUBE){
+                    if(xOffset * xOffset > maxRangeSq || yOffset * yOffset > maxRangeSq || zOffset * zOffset > maxRangeSq)
+                        continue;
+                } else if (this.floodPulley.shapeMode.get() == FloodPulleyBlockEntity.ShapeMode.SHAPE_CYLINDER){
+                    if(xOffset * xOffset + zOffset * zOffset > maxRangeSq || yOffset * yOffset > maxRangeSq)
+                        continue;
+                } else {
+                    //default case for testing only
+                    if (offsetPos.distSqr(rootPos) > maxRange)
+                        continue;
+                }
+
 
                 FluidState nextFluidState = world.getFluidState(offsetPos);
                 if (nextFluidState.isEmpty())

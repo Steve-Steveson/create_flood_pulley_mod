@@ -1,13 +1,20 @@
 package net.steveson.createfloodpulley.block.custom;
 
+import com.simibubi.create.content.contraptions.IControlContraption;
 import com.simibubi.create.content.fluids.hosePulley.HosePulleyBlock;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.foundation.advancement.AllAdvancements;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
+import com.simibubi.create.foundation.blockEntity.behaviour.CenteredSideValueBoxTransform;
+import com.simibubi.create.foundation.blockEntity.behaviour.ValueBoxTransform;
+import com.simibubi.create.foundation.blockEntity.behaviour.scrollValue.INamedIconOptions;
+import com.simibubi.create.foundation.blockEntity.behaviour.scrollValue.ScrollOptionBehaviour;
 import com.simibubi.create.foundation.fluid.SmartFluidTank;
+import com.simibubi.create.foundation.gui.AllIcons;
 import com.simibubi.create.foundation.item.TooltipHelper;
 import com.simibubi.create.foundation.utility.ServerSpeedProvider;
 import net.createmod.catnip.animation.LerpedFloat;
+import net.createmod.catnip.lang.Lang;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -34,7 +41,34 @@ public class FloodPulleyBlockEntity extends KineticBlockEntity {
     private FluidDrainingMisbehavior drainer;
     private FluidFillingMisbehavior filler;
     private FloodPulleyFluidHandler handler;
-//
+
+    public ScrollOptionBehaviour<ShapeMode> shapeMode;
+
+    public enum ShapeMode implements INamedIconOptions {
+
+        SHAPE_CUBE(AllIcons.I_FX_SURFACE_OFF),
+        SHAPE_CYLINDER(AllIcons.I_FX_FIELD_OFF)
+        ;
+
+        private String translationKey;
+        private AllIcons icon;
+
+        private ShapeMode(AllIcons icon) {
+            this.icon = icon;
+            translationKey = "create_flood_pulley.shape_mode." + Lang.asId(name());
+        }
+
+        @Override
+        public AllIcons getIcon() {
+            return icon;
+        }
+
+        @Override
+        public String getTranslationKey() {
+            return translationKey;
+        }
+    }
+
 
     public FloodPulleyBlockEntity(BlockEntityType<?> typeIn, BlockPos pos, BlockState state) {
         super(typeIn, pos, state);
@@ -63,7 +97,18 @@ public class FloodPulleyBlockEntity extends KineticBlockEntity {
         behaviours.add(drainer);
         behaviours.add(filler);
         super.addBehaviours(behaviours);
+        shapeMode = new ScrollOptionBehaviour<>(ShapeMode.class, Component.translatable("create_flood_pulley.shape_mode"),this, getShapeModeSlot());
+
+        behaviours.add(shapeMode);
     }
+
+
+    protected ValueBoxTransform getShapeModeSlot() {
+        return new CenteredSideValueBoxTransform((state, d) -> d == Direction.UP);
+    }
+
+
+
 
     protected void onTankContentsChanged(FluidStack contents) {}
 

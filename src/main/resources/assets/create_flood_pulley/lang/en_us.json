@@ -1,3 +1,6 @@
 {
-  "block.create_flood_pulley.flood_pulley": "Flood Pulley"
+  "block.create_flood_pulley.flood_pulley": "Flood Pulley",
+  "create_flood_pulley.shape_mode": "Area Shape",
+  "create_flood_pulley.shape_mode.shape_cube": "Cuboid",
+  "create_flood_pulley.shape_mode.shape_cylinder": "Cylinder"
 }

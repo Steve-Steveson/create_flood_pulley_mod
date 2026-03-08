@@ -21,6 +21,7 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraftforge.fluids.FluidStack;
+import net.steveson.createfloodpulley.block.custom.FloodPulleyBlockEntity;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -41,7 +42,10 @@ public class FluidDrainingMisbehavior extends FluidManipulationMisbehavior {
     Set<BlockPos> validationVisited;
     Set<BlockPos> newValidationSet;
 
-    public FluidDrainingMisbehavior(SmartBlockEntity be) {
+
+
+
+    public FluidDrainingMisbehavior(FloodPulleyBlockEntity be) {
         super(be);
         validationVisited = new HashSet<>();
         validationFrontier = new ArrayList<>();

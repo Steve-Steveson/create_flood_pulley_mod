@@ -31,6 +31,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.ticks.LevelTickAccess;
 import net.minecraft.world.ticks.LevelTicks;
+import net.steveson.createfloodpulley.block.custom.FloodPulleyBlockEntity;
 
 import java.util.*;
 
@@ -43,7 +44,7 @@ public class FluidFillingMisbehavior extends FluidManipulationMisbehavior{
     List<FluidManipulationMisbehavior.BlockPosEntry> infinityCheckFrontier;
     Set<BlockPos> infinityCheckVisited;
 
-    public FluidFillingMisbehavior(SmartBlockEntity be) {
+    public FluidFillingMisbehavior(FloodPulleyBlockEntity be) {
         super(be);
         queue = new ObjectHeapPriorityQueue<>((p, p2) -> -comparePositions(p, p2));
         revalidateIn = 1;
@@ -194,7 +195,7 @@ public class FluidFillingMisbehavior extends FluidManipulationMisbehavior{
                 if (visited.contains(offsetPos))
                     continue;
 
-//                if (offsetPos.getX() == 5){}
+
 
 
                 if (offsetPos.distSqr(rootPos) > maxRangeSq)
