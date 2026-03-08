@@ -83,6 +83,8 @@ public class FluidFillingMisbehavior extends FluidManipulationMisbehavior{
         infinityCheckVisited.clear();
     }
 
+
+    //This seems to be the filling method
     public boolean tryDeposit(Fluid fluid, BlockPos root, boolean simulate) {
         if (!Objects.equals(root, rootPos)) {
             reset();
@@ -112,7 +114,7 @@ public class FluidFillingMisbehavior extends FluidManipulationMisbehavior{
 
         Level world = getWorld();
         int maxRange = maxRange();
-        int maxRangeSq = maxRange * maxRange;
+        double maxRangeSq = (maxRange + 0.5) * (maxRange + 0.5);
         boolean evaporate = world.dimensionType()
                 .ultraWarm() && FluidHelper.isTag(fluid, FluidTags.WATER);
         boolean canPlaceSources = AllConfigs.server().fluids.fluidFillPlaceFluidSourceBlocks.get();
@@ -197,9 +199,23 @@ public class FluidFillingMisbehavior extends FluidManipulationMisbehavior{
 
 
 
+                int xOffset = offsetPos.getX() - rootPos.getX();
+                int yOffset = offsetPos.getY() - rootPos.getY();
+                int zOffset = offsetPos.getZ() - rootPos.getZ();
 
-                if (offsetPos.distSqr(rootPos) > maxRangeSq)
-                    continue;
+                if (this.floodPulley.shapeMode.get() == FloodPulleyBlockEntity.ShapeMode.SHAPE_CUBE){
+                    if(xOffset * xOffset > maxRangeSq || yOffset * yOffset > maxRangeSq || zOffset * zOffset > maxRangeSq)
+                        continue;
+                } else if (this.floodPulley.shapeMode.get() == FloodPulleyBlockEntity.ShapeMode.SHAPE_CYLINDER){
+                    if(xOffset * xOffset + zOffset * zOffset > maxRangeSq || yOffset * yOffset > maxRangeSq)
+                        continue;
+                } else {
+                    //default case for testing only
+                    if (offsetPos.distSqr(rootPos) > maxRange)
+                        continue;
+                }
+
+
 
                 FluidFillingMisbehavior.SpaceType nextSpaceType = getAtPos(world, offsetPos, fluid);
                 if (nextSpaceType != FluidFillingMisbehavior.SpaceType.BLOCKING)

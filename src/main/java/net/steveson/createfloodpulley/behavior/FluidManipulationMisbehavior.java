@@ -146,7 +146,7 @@ public abstract class FluidManipulationMisbehavior extends BlockEntityBehaviour 
         Level world = getWorld();
         int maxBlocks = -1;
         int maxRange = maxRange();
-        int maxRangeSq = maxRange * maxRange;
+        double maxRangeSq = (maxRange + 0.5) * (maxRange + 0.5);
         int i;
 
         for (i = 0; i < searchedPerTick && !frontier.isEmpty()

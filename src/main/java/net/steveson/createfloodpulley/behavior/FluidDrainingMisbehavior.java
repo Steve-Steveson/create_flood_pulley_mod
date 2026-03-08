@@ -54,6 +54,7 @@ public class FluidDrainingMisbehavior extends FluidManipulationMisbehavior {
         queue = new ObjectHeapPriorityQueue<>(this::comparePositions);
     }
 
+    //Appears to be the actual draining method
     @Nullable
     public boolean pullNext(BlockPos root, boolean simulate) {
         if (!frontier.isEmpty())
