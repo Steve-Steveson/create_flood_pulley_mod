@@ -35,6 +35,8 @@ public class CreateFloodPulleyMod
 
 
     public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(CreateFloodPulleyMod.MOD_ID)
+            //Adds the stress information to the item tooltip
+            //Thanks to a dev from Create: Bits 'n' Bobs for personally telling me about the code bellow
             .setTooltipModifierFactory(item ->
                     new ItemDescription.Modifier(item, FontHelper.Palette.STANDARD_CREATE)
                             .andThen(TooltipModifier.mapNull(KineticStats.create(item)))
