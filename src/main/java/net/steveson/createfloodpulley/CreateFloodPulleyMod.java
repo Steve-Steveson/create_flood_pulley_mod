@@ -3,6 +3,10 @@ package net.steveson.createfloodpulley;
 import com.mojang.logging.LogUtils;
 import com.simibubi.create.AllCreativeModeTabs;
 import com.simibubi.create.foundation.data.CreateRegistrate;
+import com.simibubi.create.foundation.item.ItemDescription;
+import com.simibubi.create.foundation.item.KineticStats;
+import com.simibubi.create.foundation.item.TooltipModifier;
+import net.createmod.catnip.lang.FontHelper;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -30,7 +34,11 @@ public class CreateFloodPulleyMod
     private static final Logger LOGGER = LogUtils.getLogger();
 
 
-    public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(CreateFloodPulleyMod.MOD_ID);
+    public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(CreateFloodPulleyMod.MOD_ID)
+            .setTooltipModifierFactory(item ->
+                    new ItemDescription.Modifier(item, FontHelper.Palette.STANDARD_CREATE)
+                            .andThen(TooltipModifier.mapNull(KineticStats.create(item)))
+    );
 
 
     public CreateFloodPulleyMod(FMLJavaModLoadingContext context)
