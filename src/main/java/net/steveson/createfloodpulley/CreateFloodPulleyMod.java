@@ -17,6 +17,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.steveson.createfloodpulley.block.CFPBlockEntities;
 import net.steveson.createfloodpulley.block.CFPBlocks;
+import net.steveson.createfloodpulley.block.StressFromBaseConfig;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -43,6 +44,8 @@ public class CreateFloodPulleyMod
         CFPBlocks.register();
         CFPBlockEntities.register();
 
+        StressFromBaseConfig.register();
+
 
         modEventBus.addListener(this::commonSetup);
 
@@ -50,7 +53,7 @@ public class CreateFloodPulleyMod
 
         modEventBus.addListener(this::addCreative);
 
-        context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+//        context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)

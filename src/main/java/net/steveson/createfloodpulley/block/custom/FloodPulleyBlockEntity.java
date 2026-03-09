@@ -1,9 +1,7 @@
 package net.steveson.createfloodpulley.block.custom;
 
-import com.simibubi.create.content.contraptions.IControlContraption;
 import com.simibubi.create.content.fluids.hosePulley.HosePulleyBlock;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
-import com.simibubi.create.foundation.advancement.AllAdvancements;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import com.simibubi.create.foundation.blockEntity.behaviour.CenteredSideValueBoxTransform;
 import com.simibubi.create.foundation.blockEntity.behaviour.ValueBoxTransform;
@@ -11,7 +9,6 @@ import com.simibubi.create.foundation.blockEntity.behaviour.scrollValue.INamedIc
 import com.simibubi.create.foundation.blockEntity.behaviour.scrollValue.ScrollOptionBehaviour;
 import com.simibubi.create.foundation.fluid.SmartFluidTank;
 import com.simibubi.create.foundation.gui.AllIcons;
-import com.simibubi.create.foundation.item.TooltipHelper;
 import com.simibubi.create.foundation.utility.ServerSpeedProvider;
 import net.createmod.catnip.animation.LerpedFloat;
 import net.createmod.catnip.lang.Lang;
@@ -26,7 +23,6 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.steveson.createfloodpulley.Config;
 import net.steveson.createfloodpulley.behavior.FluidDrainingMisbehavior;
 import net.steveson.createfloodpulley.behavior.FluidFillingMisbehavior;
 import net.steveson.createfloodpulley.util.MoreIcons;
@@ -229,10 +225,10 @@ public class FloodPulleyBlockEntity extends KineticBlockEntity {
     }
 
     //stress impact seems to be set with a single method. How wonderfully plug&play!
-    public float calculateStressApplied() {
-        float impact = Config.floodPulleyStress;
-        this.lastStressApplied = impact;
-        return impact;
-    }
+//    public float calculateStressApplied() {
+//        float impact = Config.floodPulleyStress;
+//        this.lastStressApplied = impact;
+//        return impact;
+//    }
 
 }
