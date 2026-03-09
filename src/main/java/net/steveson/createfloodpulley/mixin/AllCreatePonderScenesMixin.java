@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+//This class copied from Create: Bits 'n' Bobs, which is allowed under the MIT License.
 @Mixin(value = AllCreatePonderScenes.class, remap = false)
 public class AllCreatePonderScenesMixin {
 

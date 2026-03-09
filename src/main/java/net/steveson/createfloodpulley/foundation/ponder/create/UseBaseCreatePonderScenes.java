@@ -8,6 +8,7 @@ import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
 import net.minecraft.resources.ResourceLocation;
 import net.steveson.createfloodpulley.block.CFPBlocks;
 
+//This class based on code from Create: Bits 'n' Bobs, which is allowed under the MIT License.
 public class UseBaseCreatePonderScenes {
 
     public static void register(final PonderSceneRegistrationHelper<ResourceLocation> helper) {
