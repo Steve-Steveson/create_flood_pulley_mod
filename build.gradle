@@ -196,7 +196,7 @@ tasks.named('processResources', ProcessResources).configure {
 
 mixin {
     // MixinGradle Settings
-    add sourceSets.main, 'mixins.mymod.refmap.json'
+    add sourceSets.main, 'mixins.create_flood_pulley.refmap.json'
     config 'mixins.create_flood_pulley.json'
 
     debug.verbose = true

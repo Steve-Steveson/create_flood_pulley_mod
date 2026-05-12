@@ -2,7 +2,7 @@
   "required": true,
   "compatibilityLevel": "JAVA_17",
   "package": "net.steveson.createfloodpulley.mixin",
-  "refmap": "mixins.mymod.refmap.json",
+  "refmap": "mixins.create_flood_pulley.refmap.json",
   "injectors": {
     "defaultRequire": 1
   },
